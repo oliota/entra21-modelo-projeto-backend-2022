@@ -35,8 +35,14 @@ public class Curso {
 	}
 
 
-	public Curso(String nome, String[] preRequisitos, double valor, LocalDate dataInicio, LocalDate dataFim,
-			LocalTime horaInicio, LocalTime horaFim, HashSet<String> ementa) {
+	public Curso(String nome, 
+			String[] preRequisitos,
+			double valor,
+			LocalDate dataInicio, 
+			LocalDate dataFim,
+			LocalTime horaInicio, 
+			LocalTime horaFim,
+			HashSet<String> ementa) {
 		super();
 		this.nome = nome;
 		this.preRequisitos = preRequisitos;

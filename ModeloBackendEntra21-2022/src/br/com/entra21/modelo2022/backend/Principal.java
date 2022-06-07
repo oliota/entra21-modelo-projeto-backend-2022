@@ -17,10 +17,13 @@ public class Principal {
 	@FaltaImplementar
 	public static void cadastrar() {
 
+		new MenuPrincipal("PRINCIPAL", new ArrayList<String>(Arrays.asList("Cadastros", "Relatórios"))).executarMenu(); 
 	}
 
 	@FaltaImplementar
 	public static void recuperarSenha() {
+		
+		new MenuPrincipal("PRINCIPAL", new ArrayList<String>(Arrays.asList("Cadastros", "Relatórios"))).executarMenu(); 
 
 	}
 

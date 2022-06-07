@@ -27,8 +27,10 @@ public class Main   {
 				Principal.entrar();
 				break;
 			case 2: 
+				Principal.cadastrar();
 				break;
 			case 3: 
+				Principal.recuperarSenha();
 				break;
 			case 4: 
 				Principal.exibirInformacoesSobre();

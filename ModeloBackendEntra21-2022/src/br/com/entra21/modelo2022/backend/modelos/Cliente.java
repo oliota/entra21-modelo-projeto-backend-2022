@@ -24,10 +24,10 @@ public class Cliente  extends Pessoa{
 		super(nome, idade, cpf); 
 	}
 
-	public Cliente(String nome, byte idade, String cpf,LocalDateTime dataCadastro, LocalDateTime dataAtualizacao, ArrayList<String> reclamacoes) {
+	public Cliente(String nome, byte idade, String cpf, ArrayList<String> reclamacoes) {
 		super(nome, idade, cpf);
-		this.dataCadastro = dataCadastro;
-		this.dataAtualizacao = dataAtualizacao;
+		this.dataCadastro = LocalDateTime.now();
+		this.dataAtualizacao = this.dataCadastro;
 		this.reclamacoes = reclamacoes;
 	}
 
