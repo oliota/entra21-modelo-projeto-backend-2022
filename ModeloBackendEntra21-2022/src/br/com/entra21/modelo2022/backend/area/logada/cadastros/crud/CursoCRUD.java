@@ -9,8 +9,7 @@ import br.com.entra21.modelo2022.backend.modelos.Curso;
 public class CursoCRUD extends Menu implements ICrud<Curso> {
 
 	private HashMap<String,Curso> lista = Repositorio.cursos;
-
-	private final String CAMPO_CHAVE = "nome";
+ 
 	
 	public CursoCRUD() {
 		super("CURSOS", opcoes);
@@ -59,7 +58,7 @@ public class CursoCRUD extends Menu implements ICrud<Curso> {
 		if (buscar(novo) == null) {
 			lista.put(novo.getNome(),novo);
 		} else {
-			System.out.println("Já existe um registro com "+CAMPO_CHAVE+":" + novo.getNome());
+			System.out.println("Já existe um registro com CHAVE:" + novo.getNome());
 		}
 
 	}
@@ -74,7 +73,7 @@ public class CursoCRUD extends Menu implements ICrud<Curso> {
 	public void editar(Curso chave) {
 		Curso cursoAtual = buscar(chave);
 		if (cursoAtual == null) {
-			System.out.println("Não existe um registro com "+CAMPO_CHAVE+":" + chave.getNome());
+			System.out.println("Não existe um registro com CHAVE:" + chave.getNome());
 		} else {
 			lista.put(chave.getNome(),capturarValores()) ;
 			System.out.println("Dados atualizados");
@@ -85,7 +84,7 @@ public class CursoCRUD extends Menu implements ICrud<Curso> {
 	public void deletar(Curso chave) {
 		Curso cursoAtual = buscar(chave);
 		if (cursoAtual == null) {
-			System.out.println("Não existe um registro com "+CAMPO_CHAVE+":" + chave.getNome());
+			System.out.println("Não existe um registro com CHAVE:" + chave.getNome());
 		} else {
 			lista.remove(chave.getNome());
 			System.out.println("Item excluido");
@@ -96,7 +95,7 @@ public class CursoCRUD extends Menu implements ICrud<Curso> {
 	@Override
 	public Curso capturarChave() {
 		Curso formulario = new Curso();
-		System.out.println("Informe o " + CAMPO_CHAVE);
+		System.out.println("Informe a CHAVE"  );
 		formulario.setNome(super.getEntrada().next());
 		return formulario;
 	}
@@ -105,7 +104,7 @@ public class CursoCRUD extends Menu implements ICrud<Curso> {
 	public Curso capturarValores() {
 		Curso formulario = new Curso();
 		
-		System.out.println("Informe o "+CAMPO_CHAVE);
+		System.out.println("Informe o nome" );
 		formulario.setNome(super.getEntrada().next());
 
 		System.out.println("Informe o valor:");

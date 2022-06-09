@@ -59,7 +59,7 @@ public class ClienteCRUD extends Menu implements ICrud<Cliente> {
 		if (buscar(novo) == null) {
 			lista.put(novo.getNome(), novo);
 		} else {
-			System.out.println("Já existe um registro com "+CAMPO_CHAVE+":" + novo.getCpf());
+			System.out.println("Já existe um registro com CHAVE:" + novo.getCpf());
 		}
 
 	}
@@ -74,7 +74,7 @@ public class ClienteCRUD extends Menu implements ICrud<Cliente> {
 	public void editar(Cliente chave) {
 		Cliente cursoAtual = buscar(chave);
 		if (cursoAtual == null) {
-			System.out.println("Não existe um registro com "+CAMPO_CHAVE+":" + chave.getCpf());
+			System.out.println("Não existe um registro com CHAVE:" + chave.getCpf());
 		} else {
 			lista.put(chave.getNome(), capturarValores());
 			System.out.println("Dados atualizados");
@@ -85,7 +85,7 @@ public class ClienteCRUD extends Menu implements ICrud<Cliente> {
 	public void deletar(Cliente chave) {
 		Cliente cursoAtual = buscar(chave);
 		if (cursoAtual == null) {
-			System.out.println("Não existe um registro com "+CAMPO_CHAVE+":" + chave.getCpf());
+			System.out.println("Não existe um registro com CHAVE:" + chave.getCpf());
 		} else {
 			lista.remove(chave.getNome());
 			System.out.println("Item excluido");
@@ -96,7 +96,7 @@ public class ClienteCRUD extends Menu implements ICrud<Cliente> {
 	@Override
 	public Cliente capturarChave() {
 		Cliente formulario = new Cliente();
-		System.out.println("Informe o " + CAMPO_CHAVE);
+		System.out.println("Informe a CHAVE");
 		formulario.setNome(super.getEntrada().next());
 		return formulario;
 	}
@@ -105,7 +105,7 @@ public class ClienteCRUD extends Menu implements ICrud<Cliente> {
 	public Cliente capturarValores() {
 		Cliente formulario = new Cliente();
 
-		System.out.println("Informe o "+CAMPO_CHAVE);
+		System.out.println("Informe o nome");
 		formulario.setNome(super.getEntrada().next());
 
 		System.out.println("Informe a idade:");

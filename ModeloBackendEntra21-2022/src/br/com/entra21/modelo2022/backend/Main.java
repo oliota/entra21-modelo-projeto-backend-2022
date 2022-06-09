@@ -9,10 +9,10 @@ public class Main   {
  
 	private static Scanner entrada = new Scanner(System.in);
 	private static ArrayList<String> opcoes;
+	
 	public static void main(String[] args) {
 		
-		Repositorio.gerarMassaTeste();
-		System.out.println("\030[3mHello World!\030[0m");
+		Repositorio.gerarMassaTeste(); 
 
 		byte opcao;
 		do {
