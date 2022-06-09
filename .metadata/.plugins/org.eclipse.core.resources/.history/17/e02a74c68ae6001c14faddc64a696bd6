@@ -1,0 +1,15 @@
+package br.com.entra21.modelo2022.backend.modelos;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
+public class Funcionario extends Pessoa {
+	
+
+	private LocalDateTime dataAdmissao;
+	private LocalDateTime dataDemissao;
+	private ArrayList<String> feedbacks;
+	
+	
+
+}

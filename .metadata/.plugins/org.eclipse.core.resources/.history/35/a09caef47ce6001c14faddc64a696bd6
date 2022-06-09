@@ -1,0 +1,39 @@
+package br.com.entra21.modelo2022.backend.area.logada.cadastros;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import br.com.entra21.modelo2022.backend.Menu;
+import br.com.entra21.modelo2022.backend.area.logada.MenuPrincipal;
+import br.com.entra21.modelo2022.backend.area.logada.cadastros.crud.CursoCRUD;
+import br.com.entra21.modelo2022.backend.area.logada.cadastros.crud.ICrud;
+
+public class MenuCadastro extends Menu {
+
+	public MenuCadastro(String titulo, ArrayList<String> opcoes) {
+		super(titulo, opcoes); 
+	}
+	
+	@Override
+	public byte capturarOpcao() {
+
+		byte opcao = super.capturarOpcao();
+		switch (opcao) {
+		case 1:  
+			new CursoCRUD("CURSOS").executarMenu(); 
+			break;
+		case 2: 
+			break;
+		case 3: 
+			break;
+		case 4: 
+			break; 
+		default:
+			System.out.println("Opção inválida para o menu de " + super.getTitulo());
+			break;
+		}
+		return opcao;
+	}
+
+}
+

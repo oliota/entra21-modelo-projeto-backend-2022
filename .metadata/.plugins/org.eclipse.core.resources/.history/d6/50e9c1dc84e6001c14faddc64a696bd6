@@ -1,0 +1,11 @@
+package br.com.entra21.modelo2022.backend;
+
+import java.util.ArrayList;
+
+import br.com.entra21.modelo2022.backend.modelos.Curso;
+
+public class Repositorio {
+	
+	public static ArrayList<Curso> cursos=new ArrayList<>();
+
+}

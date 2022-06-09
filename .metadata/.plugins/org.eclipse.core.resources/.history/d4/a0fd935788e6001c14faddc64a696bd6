@@ -1,0 +1,19 @@
+package br.com.entra21.modelo2022.backend;
+
+import java.util.ArrayList;
+
+import br.com.entra21.modelo2022.backend.modelos.Curso;
+
+public class Repositorio {
+	
+	public static ArrayList<Curso> cursos=new ArrayList<>();
+	
+	
+	public static void gerarMassaTeste() {
+
+		cursos.add(new Curso("Metodologia ágil"));
+		cursos.add(new Curso("Git"));
+		cursos.add(new Curso("Lógica de programação"));
+	}
+
+}

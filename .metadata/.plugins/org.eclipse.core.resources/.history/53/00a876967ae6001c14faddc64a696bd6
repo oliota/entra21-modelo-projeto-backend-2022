@@ -1,0 +1,9 @@
+package br.com.entra21.modelo2022.backend.area.logada.cadastros.crud;
+
+public class Snippet {
+	public static void main(String[] args) {
+		
+		new MenuPrincipal("CADASTROS", new ArrayList<String>(Arrays.asList("Cursos", "Clientes"))).executarMenu(); 
+	}
+}
+

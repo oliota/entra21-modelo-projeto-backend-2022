@@ -1,0 +1,38 @@
+package br.com.entra21.modelo2022.backend;
+
+import br.com.entra21.modelo2022.backend.anottations.FaltaImplementar;
+
+public class Principal {
+
+	@FaltaImplementar
+	public static void entrar() {
+
+	}
+
+	public static void cadastrar() {
+
+	}
+
+	public static void recuperarSenha() {
+
+	}
+
+	public static void exibirInformacoesSobre() {
+		System.out.println("============================== SOBRE ==================================");
+		System.out.println("Projeto desenvolvido pela EU-quipe Oliota");
+		System.out.println("Objetivo");
+		System.out.println("\tServir de modelo para construção dos projetos em grupo para os alunos do entra21-2022 (Melhor turma de java)");
+		System.out.println("\tEm cada etapa o projeto será atualizado e salvo em branches diferentes para manter o historico de evolução");
+		System.out.println("");
+		System.out.println("Escopo");
+		System.out.println("\tProjeto para cadastro, relatórios e regras de negocios envolvendo o assunto GESTOR DE CURSOS"); 
+		System.out.println("\tO catalogo de cursos é oferecido pela instituição e os clientes optam por adquirir os cursos"); 
+		System.out.println("\tCada curso tem seus detalhes como , data de inicio, carga horaria e valor"); 
+		System.out.println(""); 
+		System.out.println("Versões");
+		System.out.println("\tV1.0 - Cadastros,relatórios, 1 regra de negócio"); 
+		System.out.println("=======================================================================");
+
+	}
+
+}

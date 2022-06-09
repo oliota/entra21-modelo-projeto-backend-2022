@@ -1,0 +1,14 @@
+/**
+ * 
+ */
+package br.com.entra21.modelo2022.backend.anottations;
+
+/**
+ * @author EU-quipe Oliota
+ * <p>
+ * Essa ação esta sem implementação
+ * TODO é muito importante que a lógica necessária seja desenvolvida, mas temporariamente está disponivel para compor a lógica da aplicação
+ */
+public @interface FaltaImplementar {
+
+}

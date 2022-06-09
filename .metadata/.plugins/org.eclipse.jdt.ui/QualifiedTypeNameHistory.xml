@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="br.com.entra21.modelo2022.backend.anottations.FaltaImplementar"/>
+    <fullyQualifiedTypeName name="br.com.entra21.modelo2022.backend.area.logada.MenuPrincipal"/>
+    <fullyQualifiedTypeName name="br.com.entra21.modelo2022.backend.Menu"/>
+    <fullyQualifiedTypeName name="br.com.entra21.modelo2022.backend.area.logada.cadastros.crud.ICrud"/>
+    <fullyQualifiedTypeName name="br.com.entra21.modelo2022.backend.area.logada.cadastros.crud.CursoCRUD"/>
+    <fullyQualifiedTypeName name="br.com.entra21.modelo2022.backend.area.logada.cadastros.MenuCadastro"/>
+    <fullyQualifiedTypeName name="br.com.entra21.modelo2022.backend.Repositorio"/>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="br.com.entra21.modelo2022.backend.area.logada.cadastros.crud.ClienteCRUD"/>
+    <fullyQualifiedTypeName name="br.com.entra21.modelo2022.backend.Principal"/>
+    <fullyQualifiedTypeName name="br.com.entra21.modelo2022.backend.modelos.Curso"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="java.time.LocalTime"/>
+    <fullyQualifiedTypeName name="java.util.HashSet"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="br.com.entra21.modelo2022.backend.modelos.Cliente"/>
+    <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
+    <fullyQualifiedTypeName name="java.util.Collections"/>
+</qualifiedTypeNameHistroy>

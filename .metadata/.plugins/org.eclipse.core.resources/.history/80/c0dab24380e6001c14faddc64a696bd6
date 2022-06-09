@@ -1,0 +1,78 @@
+package br.com.entra21.modelo2022.backend.area.logada.cadastros.crud;
+ 
+import java.util.ArrayList;
+
+import br.com.entra21.modelo2022.backend.Menu;
+import br.com.entra21.modelo2022.backend.Repositorio;
+import br.com.entra21.modelo2022.backend.modelos.Curso; 
+
+public class CursoCRUD extends Menu implements ICrud{
+ 
+	public CursoCRUD(String titulo) {
+		super(titulo, opcoes); 
+	}
+	
+	@Override
+	public byte capturarOpcao() {
+
+		byte opcao = super.capturarOpcao();
+		switch (opcao) {
+		case 1:  
+			listar(Repositorio.cursos);
+			break;
+		case 2:   
+			break; 
+		default:
+			System.out.println("Opção inválida para o menu de " + super.getTitulo());
+			break;
+		}
+		return opcao;
+	}
+	@Override
+	public void listar(ArrayList<?> lista) {
+		for (Curso curso : lista) {
+			
+		}
+		
+	}
+ 
+
+	@Override
+	public <T> void adicionar(T novo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public <T> void buscar(T chave) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public <T> void editar(T chave) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public <T> void exluir(T chave) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public <T> T capturarChave() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <T> T capturarValores() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+  
+}

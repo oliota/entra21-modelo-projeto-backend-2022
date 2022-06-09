@@ -1,0 +1,12 @@
+package br.com.entra21.modelo2022.backend.modelos;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
+public class Cliente  extends Pessoa{
+
+	private LocalDateTime dataCadastro;
+	private LocalDateTime dataAtualizacao;
+	private ArrayList<String> reclamacoes;
+
+}

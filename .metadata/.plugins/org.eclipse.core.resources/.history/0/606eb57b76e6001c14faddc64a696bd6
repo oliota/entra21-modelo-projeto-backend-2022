@@ -1,0 +1,10 @@
+package br.com.entra21.modelo2022.backend;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,25 @@
+package br.com.entra21.modelo2022.backend.area.logada.cadastros.crud;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public interface ICrud<T> {
+
+	ArrayList<String> opcoes = new ArrayList<String>(
+			Arrays.asList("Listar", "Adicionar", "Buscar", "Editar", "Deletar"));
+
+	public void listar(ArrayList<T> lista);
+
+	public void adicionar();
+
+	public T buscar(T chave);
+
+	public void editar();
+
+	public void exluir();
+
+	public T capturarChave();
+
+	public T capturarValores();
+
+}
