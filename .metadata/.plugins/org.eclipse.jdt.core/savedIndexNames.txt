@@ -1,4 +1,0 @@
-INDEX VERSION 1.131+C:\Users\roliota\OneDrive - Capgemini\Documents\Pessoal\Proway\ENTRA21\entra21-modelo-projeto-backend-2022\.metadata\.plugins\org.eclipse.jdt.core
-1865797976.index
-3883950653.index
-3397391495.index
