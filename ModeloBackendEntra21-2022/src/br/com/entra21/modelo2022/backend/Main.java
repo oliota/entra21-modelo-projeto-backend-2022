@@ -2,6 +2,7 @@ package br.com.entra21.modelo2022.backend;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main   {
@@ -9,6 +10,7 @@ public class Main   {
  
 	private static Scanner entrada = new Scanner(System.in);
 	private static ArrayList<String> opcoes;
+	private static final byte LIMITE_TENTATIVA=3;
 	
 	public static void main(String[] args) {
 		
@@ -17,27 +19,32 @@ public class Main   {
 		byte opcao;
 		do {
 			System.out.println(montarMenu());
-			opcao = entrada.nextByte();
+			try {
+				opcao = entrada.nextByte();
+			} catch (InputMismatchException e) {
+				opcao=-2;
+				entrada=new Scanner(System.in);
+			}
 
 			switch (opcao) {
 			case 0:
 				System.out.println("Até a proxima!");
 				break;
 			case 1: 
-				Principal.entrar();
+				Principal.entrar(LIMITE_TENTATIVA);
 				break;
 			case 2: 
-				Principal.cadastrar();
+				Principal.cadastrar(LIMITE_TENTATIVA);
 				break;
 			case 3: 
-				Principal.recuperarSenha();
+				Principal.recuperarSenha(LIMITE_TENTATIVA);
 				break;
 			case 4: 
 				Principal.exibirInformacoesSobre();
 				break; 
 
 			default:
-				System.out.println("Escolha uma opção válida para aprender um assunto avançado sobre JAVA");
+				System.out.println("Escolha uma opção válida");
 				break;
 			}
 

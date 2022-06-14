@@ -1,5 +1,6 @@
 package br.com.entra21.modelo2022.backend.area.logada.cadastros.crud;
  
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 import br.com.entra21.modelo2022.backend.Menu;
@@ -9,6 +10,9 @@ import br.com.entra21.modelo2022.backend.modelos.Curso;
 public class CursoCRUD extends Menu implements ICrud<Curso> {
 
 	private HashMap<String,Curso> lista = Repositorio.cursos;
+	private DateTimeFormatter dataFormater= DateTimeFormatter.ofPattern("dd/MM/YYYY"); 
+	private DateTimeFormatter horaFormater= DateTimeFormatter.ofPattern("hh:mm:ss"); 
+	private final String TABULACAO = "\t\t\t";
  
 	
 	public CursoCRUD() {
@@ -34,10 +38,7 @@ public class CursoCRUD extends Menu implements ICrud<Curso> {
 			break;
 		case 5:
 			deletar(capturarChave());
-			break;
-		default:
-			System.out.println("Opção inválida para o menu de " + super.getTitulo());
-			break;
+			break; 
 		}
 		return opcao;
 	}
@@ -46,7 +47,7 @@ public class CursoCRUD extends Menu implements ICrud<Curso> {
 	public void listar(HashMap<String,Curso> lista) {
 		System.out.println("------------  LISTA " + getTitulo() + "  ----------------");
 		for (Curso curso : lista.values()) {
-			System.out.println("\t"+curso.getNome()+" - "+curso.getValor());
+			System.out.println("CHAVE:"+curso.getNome()+TABULACAO+curso.getValor()+"\tInicio:"+dataFormater.format(curso.getDataInicio()));
 		}
 		System.out.println("------------  QUANTIDADE (" + lista.size() + ")  -----------");
 

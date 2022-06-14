@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 import br.com.entra21.modelo2022.backend.Menu;
 import br.com.entra21.modelo2022.backend.area.logada.cadastros.crud.ClienteCRUD;
-import br.com.entra21.modelo2022.backend.area.logada.cadastros.crud.CursoCRUD; 
+import br.com.entra21.modelo2022.backend.area.logada.cadastros.crud.CursoCRUD;
+import br.com.entra21.modelo2022.backend.area.logada.cadastros.crud.FuncionarioCRUD; 
 
 public class MenuCadastro extends Menu {
 
@@ -24,12 +25,10 @@ public class MenuCadastro extends Menu {
 			new ClienteCRUD().executarMenu(); 
 			break;
 		case 3: 
+			new FuncionarioCRUD().executarMenu();
 			break;
 		case 4: 
-			break; 
-		default:
-			System.out.println("Opção inválida para o menu de " + super.getTitulo());
-			break;
+			break;  
 		}
 		return opcao;
 	}

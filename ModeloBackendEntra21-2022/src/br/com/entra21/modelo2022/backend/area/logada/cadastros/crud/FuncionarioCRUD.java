@@ -1,18 +1,21 @@
 package br.com.entra21.modelo2022.backend.area.logada.cadastros.crud;
  
 
+import static br.com.entra21.modelo2022.backend.area.logada.cadastros.crud.ICrud.opcoes;
+
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 import br.com.entra21.modelo2022.backend.Menu;
 import br.com.entra21.modelo2022.backend.Repositorio;
-import br.com.entra21.modelo2022.backend.modelos.Cliente;
+import br.com.entra21.modelo2022.backend.modelos.Funcionario;
 
-public class ClienteCRUD extends Menu implements ICrud<Cliente> {
+public class FuncionarioCRUD extends Menu implements ICrud<Funcionario> {
 
-	private HashMap<String, Cliente> lista = Repositorio.clientes;
+	private HashMap<String, Funcionario> lista = Repositorio.funcionarios;
 	private final String TABULACAO = "\t\t\t";
 
-	public ClienteCRUD() {
+	public FuncionarioCRUD() {
 		super("CLIENTES", opcoes);
 	}
 
@@ -41,10 +44,10 @@ public class ClienteCRUD extends Menu implements ICrud<Cliente> {
 	}
 
 	@Override
-	public void listar(HashMap<String, Cliente> lista) {
+	public void listar(HashMap<String, Funcionario> lista) {
 		System.out.println("------------  LISTA " + getTitulo() + "  ----------------");
-		for (Cliente cliente : lista.values()) {
-			System.out.println("CHAVE:"+cliente.getCpf()+TABULACAO + cliente.getNome() + " - " + cliente.getIdade() );
+		for (Funcionario funcionario : lista.values()) {
+			System.out.println("CHAVE:"+funcionario.getCpf()+TABULACAO + funcionario.getNome() + " - " + funcionario.getIdade() + " - " + funcionario.getDataAdmissao().format(DateTimeFormatter.ofPattern("dd/MM/YYYY")));
 		}
 		System.out.println("------------  QUANTIDADE (" + lista.size() + ")  -----------");
 
@@ -52,7 +55,7 @@ public class ClienteCRUD extends Menu implements ICrud<Cliente> {
 
 	@Override
 	public void adicionar() {
-		Cliente novo = capturarValores();
+		Funcionario novo = capturarValores();
 		if (buscar(novo) == null) {
 			lista.put(novo.getNome(), novo);
 		} else {
@@ -62,15 +65,15 @@ public class ClienteCRUD extends Menu implements ICrud<Cliente> {
 	}
 
 	@Override
-	public Cliente buscar(Cliente chave) {
+	public Funcionario buscar(Funcionario chave) {
 		return lista.get(chave.getNome());
 
 	}
 
 	@Override
-	public void editar(Cliente chave) {
-		Cliente cursoAtual = buscar(chave);
-		if (cursoAtual == null) {
+	public void editar(Funcionario chave) {
+		Funcionario funcionario = buscar(chave);
+		if (funcionario == null) {
 			System.out.println("Não existe um registro com CHAVE:" + chave.getCpf());
 		} else {
 			lista.put(chave.getNome(), capturarValores());
@@ -79,9 +82,9 @@ public class ClienteCRUD extends Menu implements ICrud<Cliente> {
 	}
 
 	@Override
-	public void deletar(Cliente chave) {
-		Cliente cursoAtual = buscar(chave);
-		if (cursoAtual == null) {
+	public void deletar(Funcionario chave) {
+		Funcionario funcionario = buscar(chave);
+		if (funcionario == null) {
 			System.out.println("Não existe um registro com CHAVE:" + chave.getCpf());
 		} else {
 			lista.remove(chave.getNome());
@@ -91,16 +94,16 @@ public class ClienteCRUD extends Menu implements ICrud<Cliente> {
 	}
 
 	@Override
-	public Cliente capturarChave() {
-		Cliente formulario = new Cliente();
+	public Funcionario capturarChave() {
+		Funcionario formulario = new Funcionario();
 		System.out.println("Informe a CHAVE");
 		formulario.setNome(super.getEntrada().next());
 		return formulario;
 	}
 
 	@Override
-	public Cliente capturarValores() {
-		Cliente formulario = new Cliente();
+	public Funcionario capturarValores() {
+		Funcionario formulario = new Funcionario();
 
 		System.out.println("Informe o nome");
 		formulario.setNome(super.getEntrada().next());
@@ -112,7 +115,7 @@ public class ClienteCRUD extends Menu implements ICrud<Cliente> {
 	}
 
 	@Override
-	public void exibirDetalhes(Cliente completo) {
+	public void exibirDetalhes(Funcionario completo) {
 		if(completo==null) {
 			System.out.println("Não é possivel exibir os detalhes, item não localizado");
 		}else {

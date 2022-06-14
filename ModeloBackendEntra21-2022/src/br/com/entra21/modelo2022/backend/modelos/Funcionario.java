@@ -8,25 +8,27 @@ public class Funcionario extends Pessoa {
 	private LocalDateTime dataAdmissao;
 	private LocalDateTime dataDemissao;
 	private ArrayList<String> feedbacks;
+	private String senha;
 
 	public Funcionario() {
-		super();
-		// TODO Auto-generated constructor stub
+		super(); 
+		this.dataAdmissao=LocalDateTime.now();
 	}
 
 	public Funcionario(String nome) {
-		super(nome);
-		// TODO Auto-generated constructor stub
+		super(nome); 
+		this.dataAdmissao=LocalDateTime.now();
 	}
 
 	public Funcionario(String nome, byte idade) {
-		super(nome, idade);
-		// TODO Auto-generated constructor stub
+		super(nome, idade); 
+		this.dataAdmissao=LocalDateTime.now();
 	}
 
 	public Funcionario(String nome, byte idade, String cpf) {
-		super(nome, idade, cpf);
-		// TODO Auto-generated constructor stub
+		super(nome, idade, cpf); 
+		this.senha=cpf;
+		this.dataAdmissao=LocalDateTime.now();
 	}
 
 	public Funcionario(String nome, byte idade, String cpf,LocalDateTime dataAdmissao, LocalDateTime dataDemissao, ArrayList<String> feedbacks) {
@@ -34,6 +36,8 @@ public class Funcionario extends Pessoa {
 		this.dataAdmissao = dataAdmissao;
 		this.dataDemissao = dataDemissao;
 		this.feedbacks = feedbacks;
+		this.senha=cpf;
+		this.dataAdmissao=LocalDateTime.now();
 	}
 
 	public LocalDateTime getDataAdmissao() {
@@ -59,7 +63,15 @@ public class Funcionario extends Pessoa {
 	public void setFeedbacks(ArrayList<String> feedbacks) {
 		this.feedbacks = feedbacks;
 	}
-	
+	public String getSenha() {
+		return senha;
+	}
+
+
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 	
 
 }
