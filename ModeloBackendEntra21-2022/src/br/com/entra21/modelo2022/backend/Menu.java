@@ -69,7 +69,7 @@ public class Menu {
 
 	private String exibirDetalhesFuncionarioLogado() {
 
-		Funcionario funcionario = Repositorio.funcionarioLogado;
+		Funcionario funcionario = Principal.funcionarioLogado;
 		return "Funcionário logado:" + funcionario.getNome() + " - CPF - " + funcionario.getCpf()
 				+ " - ADMITIDO EM:"
 				+ funcionario.getDataAdmissao().format(DateTimeFormatter.ofPattern("dd/MM/YYYY"));

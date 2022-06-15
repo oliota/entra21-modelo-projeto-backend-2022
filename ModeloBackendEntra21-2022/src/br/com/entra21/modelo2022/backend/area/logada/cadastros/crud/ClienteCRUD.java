@@ -3,13 +3,13 @@ package br.com.entra21.modelo2022.backend.area.logada.cadastros.crud;
 
 import java.util.HashMap;
 
-import br.com.entra21.modelo2022.backend.Menu;
-import br.com.entra21.modelo2022.backend.Repositorio;
+import br.com.entra21.modelo2022.backend.IRepositorio;
+import br.com.entra21.modelo2022.backend.Menu; 
 import br.com.entra21.modelo2022.backend.modelos.Cliente;
 
 public class ClienteCRUD extends Menu implements ICrud<Cliente> {
 
-	private HashMap<String, Cliente> lista = Repositorio.clientes;
+	private HashMap<String, Cliente> lista = IRepositorio.clientes;
 	private final String TABULACAO = "\t\t\t";
 
 	public ClienteCRUD() {

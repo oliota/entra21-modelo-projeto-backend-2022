@@ -2,6 +2,7 @@ package br.com.entra21.modelo2022.backend.modelos;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -15,18 +16,16 @@ public class Curso {
 	private LocalTime horaInicio;
 	private LocalTime horaFim;
 	private HashSet<String> ementa;
+	private String planoAulas[][];
+
 	public Curso() {
-		
+
 	}
-	
-	
+
 	public Curso(String nome) {
 		super();
 		this.nome = nome;
 	}
-	
-
-
 
 	public Curso(String nome, double valor) {
 		super();
@@ -34,15 +33,8 @@ public class Curso {
 		this.valor = valor;
 	}
 
-
-	public Curso(String nome, 
-			String[] preRequisitos,
-			double valor,
-			LocalDate dataInicio, 
-			LocalDate dataFim,
-			LocalTime horaInicio, 
-			LocalTime horaFim,
-			HashSet<String> ementa) {
+	public Curso(String nome, String[] preRequisitos, double valor, LocalDate dataInicio, LocalDate dataFim,
+			LocalTime horaInicio, LocalTime horaFim, HashSet<String> ementa) {
 		super();
 		this.nome = nome;
 		this.preRequisitos = preRequisitos;
@@ -52,6 +44,20 @@ public class Curso {
 		this.horaInicio = horaInicio;
 		this.horaFim = horaFim;
 		this.ementa = ementa;
+	}
+
+	public Curso(String nome, String[] preRequisitos, double valor, LocalDate dataInicio, LocalDate dataFim,
+			LocalTime horaInicio, LocalTime horaFim, HashSet<String> ementa, String[][] planoAulas) {
+		super();
+		this.nome = nome;
+		this.preRequisitos = preRequisitos;
+		this.valor = valor;
+		this.dataInicio = dataInicio;
+		this.dataFim = dataFim;
+		this.horaInicio = horaInicio;
+		this.horaFim = horaFim;
+		this.ementa = ementa;
+		this.planoAulas = planoAulas;
 	}
 
 	public String getNome() {
@@ -118,15 +124,50 @@ public class Curso {
 		this.ementa = ementa;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Curso [nome=" + nome + ", preRequisitos=" + Arrays.toString(preRequisitos) + ", valor=" + valor
-				+ ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + ", horaInicio=" + horaInicio + ", horaFim="
-				+ horaFim + ", ementa=" + ementa + "]";
+		String detalhe = "Curso:" + nome;
+		detalhe += "\n\t- Valor:R$ " + valor;
+
+		detalhe += "\n\t- Datas:";
+		detalhe += "\n\t\t- Inicio:" + dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		detalhe += "\n\t\t- Fim:" + dataFim.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+		detalhe += "\n\t- Horarios:";
+		detalhe += "\n\t\t- Inicio:" + horaInicio;
+		detalhe += "\n\t\t- Fim:" + horaFim;
+
+		if (preRequisitos != null) {
+			detalhe += "\n\t- Pre-requisitos:"+(preRequisitos.length==0?"Nenhum":"");
+			for (String preRequisito : preRequisitos) {
+				detalhe += "\n\t\t- " + preRequisito;
+			}
+		}
+
+		detalhe += "\n\t- Ementa";
+		for (String itemEmenta : ementa) {
+			detalhe += "\n\t\t- " + itemEmenta;
+		}
+
+		detalhe += "\n\tPlano de aula";
+		if (planoAulas != null) {
+			for (int aula = 0; aula < planoAulas.length; aula++) {
+				detalhe += "\n\t\t- Aula " + (aula + 1);
+				for (String topico : planoAulas[aula]) {
+					detalhe += "\n\t\t\t- " + topico;
+				}
+			}
+		}
+
+		return detalhe;
 	}
-	
-	
-	
-	
+
+	public String[][] getPlanoAulas() {
+		return planoAulas;
+	}
+
+	public void setPlanoAulas(String planoAulas[][]) {
+		this.planoAulas = planoAulas;
+	}
+
 }

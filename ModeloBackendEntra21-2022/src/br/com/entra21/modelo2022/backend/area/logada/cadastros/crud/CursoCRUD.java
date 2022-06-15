@@ -1,20 +1,23 @@
 package br.com.entra21.modelo2022.backend.area.logada.cadastros.crud;
- 
-import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
+import java.util.HashMap;
+import java.util.Scanner;
+
+import br.com.entra21.modelo2022.backend.IRepositorio;
 import br.com.entra21.modelo2022.backend.Menu;
-import br.com.entra21.modelo2022.backend.Repositorio;
 import br.com.entra21.modelo2022.backend.modelos.Curso;
 
 public class CursoCRUD extends Menu implements ICrud<Curso> {
 
-	private HashMap<String,Curso> lista = Repositorio.cursos;
-	private DateTimeFormatter dataFormater= DateTimeFormatter.ofPattern("dd/MM/YYYY"); 
-	private DateTimeFormatter horaFormater= DateTimeFormatter.ofPattern("hh:mm:ss"); 
-	private final String TABULACAO = "\t\t\t";
- 
-	
+	private HashMap<String, Curso> lista = IRepositorio.cursos;
+	private DateTimeFormatter dateFormater = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	private DateTimeFormatter timeFormater = DateTimeFormatter.ofPattern("HH:mm");
+	private final String TABULACAO = "\t\t";
+
 	public CursoCRUD() {
 		super("CURSOS", opcoes);
 	}
@@ -38,16 +41,17 @@ public class CursoCRUD extends Menu implements ICrud<Curso> {
 			break;
 		case 5:
 			deletar(capturarChave());
-			break; 
+			break;
 		}
 		return opcao;
 	}
 
 	@Override
-	public void listar(HashMap<String,Curso> lista) {
+	public void listar(HashMap<String, Curso> lista) {
 		System.out.println("------------  LISTA " + getTitulo() + "  ----------------");
 		for (Curso curso : lista.values()) {
-			System.out.println("CHAVE:"+curso.getNome()+TABULACAO+curso.getValor()+"\tInicio:"+dataFormater.format(curso.getDataInicio()));
+			System.out.println("CHAVE:" + curso.getNome() + TABULACAO + curso.getValor() + "\tInicio:"
+					+ dateFormater.format(curso.getDataInicio()));
 		}
 		System.out.println("------------  QUANTIDADE (" + lista.size() + ")  -----------");
 
@@ -57,7 +61,7 @@ public class CursoCRUD extends Menu implements ICrud<Curso> {
 	public void adicionar() {
 		Curso novo = capturarValores();
 		if (buscar(novo) == null) {
-			lista.put(novo.getNome(),novo);
+			lista.put(novo.getNome(), novo);
 		} else {
 			System.out.println("Já existe um registro com CHAVE:" + novo.getNome());
 		}
@@ -65,7 +69,7 @@ public class CursoCRUD extends Menu implements ICrud<Curso> {
 	}
 
 	@Override
-	public Curso buscar(Curso chave) { 
+	public Curso buscar(Curso chave) {
 		return lista.get(chave.getNome());
 
 	}
@@ -76,7 +80,7 @@ public class CursoCRUD extends Menu implements ICrud<Curso> {
 		if (cursoAtual == null) {
 			System.out.println("Não existe um registro com CHAVE:" + chave.getNome());
 		} else {
-			lista.put(chave.getNome(),capturarValores()) ;
+			lista.put(chave.getNome(), capturarValores());
 			System.out.println("Dados atualizados");
 		}
 	}
@@ -96,32 +100,65 @@ public class CursoCRUD extends Menu implements ICrud<Curso> {
 	@Override
 	public Curso capturarChave() {
 		Curso formulario = new Curso();
-		System.out.println("Informe a CHAVE"  );
-		formulario.setNome(super.getEntrada().next());
+		System.out.println("Informe a CHAVE");
+		formulario.setNome(new Scanner(System.in).useDelimiter("\r\n").next());
 		return formulario;
 	}
 
 	@Override
 	public Curso capturarValores() {
 		Curso formulario = new Curso();
-		
-		System.out.println("Informe o nome" );
-		formulario.setNome(super.getEntrada().next());
+
+		System.out.println("Informe o nome");
+		formulario.setNome(new Scanner(System.in).useDelimiter("\r\n").next());
 
 		System.out.println("Informe o valor:");
 		formulario.setValor(super.getEntrada().nextDouble());
+
+		System.out.println("Informe a data de inicio no formato dd/mm/yyyy:");
+
+		// fazendo etapa por etapa
+		System.out.println("Informe a data de inicio no formato dd/mm/yyyy:");
+		String textoCapturado = super.getEntrada().next(); // 1º - recebe a data no formato esperado
+		TemporalAccessor temporal = dateFormater.parse(textoCapturado);// 2º converte em TemporalAccessor com base no
+																		// formato
+		// capturado
+		LocalDate dataInico = LocalDate.from(temporal);// 3º converte em LocalDate
+
+		formulario.setDataInicio(dataInico);
+
+		// fazendo de forma encadeada
+		System.out.println("Informe a data de fim no formato dd/mm/yyyy:");
+		formulario.setDataFim(LocalDate.from( // 3º converte em LocalDate
+				dateFormater.parse(// 2º converte em TemporalAccessor com base no formato capturado
+						super.getEntrada().next()// 1º - recebe a data no formato esperado
+				)));
+
+	 
+ 
+		System.out.println("Informe a hora de inicio no formato 24horas HH/mm:");
+		formulario.setHoraInicio(LocalTime.from( // 3º converte em LocalTime
+				timeFormater.parse(// 2º converte em TemporalAccessor com base no formato capturado
+						super.getEntrada().next()// 1º - recebe a hora no formato esperado
+				)));
 		
+		System.out.println("Informe a hora de inicio no formato 24horas HH/mm:");
+		formulario.setHoraFim(LocalTime.from( // 3º converte em LocalTime
+				timeFormater.parse(// 2º converte em TemporalAccessor com base no formato capturado
+						super.getEntrada().next()// 1º - recebe a hora no formato esperado
+				)));
+
 		return formulario;
 	}
 
 	@Override
 	public void exibirDetalhes(Curso completo) {
-		if(completo==null) {
+		if (completo == null) {
 			System.out.println("Não é possivel exibir os detalhes, item não localizado");
-		}else {
-			System.out.println(completo.toString()); 
+		} else {
+			System.out.println(completo.toString());
 		}
-		
+
 	}
 
 }

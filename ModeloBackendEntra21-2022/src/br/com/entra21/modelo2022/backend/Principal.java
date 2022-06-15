@@ -16,6 +16,7 @@ public class Principal {
 
 	static Scanner entrada = new Scanner(System.in);
 
+	public static Funcionario funcionarioLogado = null;
 	@FaltaImplementar
 	public static void entrar(byte tentativa) {
 		if (tentativa == 0) {
@@ -27,7 +28,7 @@ public class Principal {
 		}
 		try {
 			System.out.println("Informe o CPF do funcionario:");
-			Funcionario funcionario = Repositorio.funcionarios.get(entrada.next().trim());
+			Funcionario funcionario = IRepositorio.funcionarios.get(entrada.next().trim());
 
 			System.out.println("Funcionario encontrado :" + funcionario.getNome());
 			System.out.println("Informe a senha para liberar o acesso:");
@@ -65,7 +66,7 @@ public class Principal {
 		try {
 			System.out.println("Informe o CPF do novo funcionario:");
 			cpf = entrada.next().trim();
-			Funcionario funcionario = Repositorio.funcionarios.get(cpf);
+			Funcionario funcionario = IRepositorio.funcionarios.get(cpf);
 
 			if (funcionario != null) {
 				throw new FuncionarioExistenteException();
@@ -73,7 +74,7 @@ public class Principal {
 				funcionario = new FuncionarioCRUD().capturarValores();
 				funcionario.setCpf(cpf); 
 				funcionario.setSenha(cpf); 
-				Repositorio.funcionarios.put(cpf, funcionario);
+				IRepositorio.funcionarios.put(cpf, funcionario);
 				System.out.println("Funcionário cadastrado, por favor realize o login:");
 				System.out.println("IMPORTANTE: No primeiro acesso a senha é igual ao CPF e será solicitado a mudança");
 				return;
@@ -100,11 +101,11 @@ public class Principal {
 		}
 		try {
 			System.out.println("Informe o CPF do funcionario:");
-			Funcionario funcionario = Repositorio.funcionarios.get(entrada.next().trim());
+			Funcionario funcionario = IRepositorio.funcionarios.get(entrada.next().trim());
 
 			System.out.println("Funcionario encontrado :" + funcionario.getNome());
 			funcionario.setSenha(funcionario.getDataAdmissao().format( DateTimeFormatter.ofPattern("dd/MM/YYYY"))); 
-			Repositorio.funcionarios.put(funcionario.getCpf(), funcionario);
+			IRepositorio.funcionarios.put(funcionario.getCpf(), funcionario);
 			System.out.println("A senha foi atualizada com a data do admissão no formato DD/MM/YYYY:");
 			
 			System.out.println("Funcionário atualizado, por favor realize o login:");
@@ -116,11 +117,11 @@ public class Principal {
 		} 
 	}
 
-	public static void verificarSenha(Funcionario funcionario) {
+	private static void verificarSenha(Funcionario funcionario) {
 
 		if (funcionario.getSenha().equals(funcionario.getCpf()) || funcionario.getSenha().equals(funcionario.getDataAdmissao().format( DateTimeFormatter.ofPattern("dd/MM/YYYY")))) {
 			atualizarSenha(funcionario); 
-			Repositorio.funcionarios.size();
+			IRepositorio.funcionarios.size();
 		} else {
 			definirFuncionarioLogado(funcionario);
 			
@@ -137,9 +138,9 @@ public class Principal {
 		if(funcionario!=null) {
 			System.out.println("Bem vindo, "+funcionario.getNome());
 		}else {
-			System.out.println("Até a proxima "+Repositorio.funcionarioLogado.getNome()+", volte sempre que precisar.");
+			System.out.println("Até a proxima "+funcionarioLogado.getNome()+", volte sempre que precisar.");
 		}
-		Repositorio.funcionarioLogado=funcionario;
+		funcionarioLogado=funcionario;
 		
 	}
 

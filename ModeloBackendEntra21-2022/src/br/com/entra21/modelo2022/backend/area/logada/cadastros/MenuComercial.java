@@ -7,8 +7,9 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Scanner;
 
+import br.com.entra21.modelo2022.backend.IRepositorio;
 import br.com.entra21.modelo2022.backend.Menu;
-import br.com.entra21.modelo2022.backend.Repositorio;
+import br.com.entra21.modelo2022.backend.Principal;
 import br.com.entra21.modelo2022.backend.anottations.Lembrete;
 import br.com.entra21.modelo2022.backend.area.logada.cadastros.crud.ClienteCRUD;
 import br.com.entra21.modelo2022.backend.area.logada.cadastros.crud.CursoCRUD;
@@ -24,7 +25,8 @@ public class MenuComercial extends Menu {
 
 	private ClienteCRUD clienteCRUD;
 	private CursoCRUD cursoCRUD;
-	private final String TABULACAO = "\t\t\t";
+	private final String TABULACAO = "\t\t\t"; 
+	private DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd-MM-YYYY-hh-mm");
 
 	public MenuComercial(String titulo, ArrayList<String> opcoes) {
 		super(titulo, opcoes);
@@ -38,7 +40,7 @@ public class MenuComercial extends Menu {
 		byte opcao = super.capturarOpcao();
 		switch (opcao) {
 		case 1:
-			new CursoCRUD().listar(Repositorio.cursos);
+			new CursoCRUD().listar(IRepositorio.cursos);
 			break;
 		case 2:
 			realizarCompra();
@@ -53,7 +55,6 @@ public class MenuComercial extends Menu {
 		return opcao;
 	}
 
-	@Lembrete(value="Não está localizando bem pela chave no formato de data e hora")
 	private void realizarCancelamento() {
 		try {
 			Scanner entrada = new Scanner(System.in);
@@ -61,7 +62,7 @@ public class MenuComercial extends Menu {
 			System.out.println("================== Realizando cancelamento =============");
 			listarHistoricoCompras();
 			System.out.println("Informe a CHAVE");
-			Compra compra = Repositorio.compras.get(entrada.next());
+			Compra compra = IRepositorio.compras.get(entrada.next());
 			if (compra == null) {
 				throw new CompraNaoLocalizadoException();
 			} else if(compra.getDataCancelado()!=null){
@@ -70,7 +71,7 @@ public class MenuComercial extends Menu {
 				compra.setDataCancelado(LocalDateTime.now());
 				
 			}
-			Repositorio.compras.put(compra.getDataCompra().format(DateTimeFormatter.ofPattern("dd/MM/YYYY hh:mm")),
+			IRepositorio.compras.put(compra.getDataCompra().format(formatador),
 					compra);
 			System.out.println("Compra cancelada com sucesso");
 		} catch (CompraNaoLocalizadoException e) {
@@ -85,7 +86,7 @@ public class MenuComercial extends Menu {
 			Scanner entrada = new Scanner(System.in);
 
 			System.out.println("================== Realizando compra =============");
-			clienteCRUD.listar(Repositorio.clientes);
+			clienteCRUD.listar(IRepositorio.clientes);
 
 			Cliente cliente = clienteCRUD.buscar(clienteCRUD.capturarChave());
 			if (cliente == null) {
@@ -94,7 +95,7 @@ public class MenuComercial extends Menu {
 			System.out.println("Cliente selecionado: " + cliente.getNome());
 
 			System.out.println("Escolha um ou vários cursos para comprar:");
-			cursoCRUD.listar(Repositorio.cursos);
+			cursoCRUD.listar(IRepositorio.cursos);
 
 			String chave;
 			String resposta = null;
@@ -121,7 +122,7 @@ public class MenuComercial extends Menu {
 			} while (resposta.equalsIgnoreCase("s"));
 
 			System.out.println("Revise os dados antes de confirmar:");
-			System.out.println("Funcionário que está registrando a compra:" + Repositorio.funcionarioLogado.getNome());
+			System.out.println("Funcionário que está registrando a compra:" + Principal.funcionarioLogado.getNome());
 			System.out.println("Cliente que está comprando: " + cliente.getNome());
 			System.out.println("Quantidade de cursos selecionados: " + cursos.size());
 
@@ -129,8 +130,8 @@ public class MenuComercial extends Menu {
 			resposta = entrada.next();
 			if (resposta.equalsIgnoreCase("s")) {
 
-				Compra compra = new Compra(cliente.getCpf(), Repositorio.funcionarioLogado.getCpf(), cursos);
-				Repositorio.compras.put(compra.getDataCompra().format(DateTimeFormatter.ofPattern("dd/MM/YYYY hh:mm")),
+				Compra compra = new Compra(cliente.getCpf(), Principal.funcionarioLogado.getCpf(), cursos);
+				IRepositorio.compras.put(compra.getDataCompra().format(formatador),
 						compra);
 			} else {
 				throw new CompraNaoEfetuadaException();
@@ -145,7 +146,7 @@ public class MenuComercial extends Menu {
 
 	private void listarHistoricoCompras() {
 
-		for (Entry<String, Compra> compra : Repositorio.compras.entrySet()) {
+		for (Entry<String, Compra> compra : IRepositorio.compras.entrySet()) {
 			System.out.println("CHAVE:" + compra.getKey() + TABULACAO + "Quem vendeu:"
 					+ compra.getValue().getClienteChave() + " - Quem comprou:" + compra.getValue().getFuncionarioChave()
 					+ "Quantidade de cursos:" + compra.getValue().getCursos().size()

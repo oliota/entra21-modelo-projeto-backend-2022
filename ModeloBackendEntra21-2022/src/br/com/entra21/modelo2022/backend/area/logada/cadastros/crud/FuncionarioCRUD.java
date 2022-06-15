@@ -1,18 +1,17 @@
 package br.com.entra21.modelo2022.backend.area.logada.cadastros.crud;
  
-
-import static br.com.entra21.modelo2022.backend.area.logada.cadastros.crud.ICrud.opcoes;
+ 
 
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
-import br.com.entra21.modelo2022.backend.Menu;
-import br.com.entra21.modelo2022.backend.Repositorio;
+import br.com.entra21.modelo2022.backend.IRepositorio;
+import br.com.entra21.modelo2022.backend.Menu; 
 import br.com.entra21.modelo2022.backend.modelos.Funcionario;
 
 public class FuncionarioCRUD extends Menu implements ICrud<Funcionario> {
 
-	private HashMap<String, Funcionario> lista = Repositorio.funcionarios;
+	private HashMap<String, Funcionario> lista = IRepositorio.funcionarios;
 	private final String TABULACAO = "\t\t\t";
 
 	public FuncionarioCRUD() {
