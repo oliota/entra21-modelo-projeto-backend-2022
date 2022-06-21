@@ -15,6 +15,7 @@ import br.com.entra21.modelo2022.backend.modelos.Funcionario;
 
 public interface IRepositorio {
 
+	public Tradutor tradutor = Tradutor.INGLES;
 	public HashMap<String, Curso> cursos = new HashMap<>();
 	public HashMap<String, Funcionario> funcionarios = new HashMap<>();
 	public HashMap<String, Cliente> clientes = new HashMap<>();
@@ -67,27 +68,57 @@ public interface IRepositorio {
 
 		cursos.put("Metodologia ágil", // chave
 				// value
-				new Curso("Metodologia ágil", new String[] {}, 800, LocalDate.of(2022, 04, 01),
-						LocalDate.of(2022, 04, 04), horaInicioNoite, horaFimNoite,
-						new HashSet<String>(Arrays.asList("Scrum", "Kanban"))));
+				new Curso("Metodologia ágil", new String[] {}, // pre-requisitos
+						800, // valor
+						LocalDate.of(2022, 04, 01), LocalDate.of(2022, 04, 04), // datas
+						horaInicioNoite, horaFimNoite, // horarios
+						new HashSet<String>(Arrays.asList("Scrum", "Kanban")), // ementa
+						new String[][] { // plano de aulas
+								{ "Conceitos sobre Scrum", "Papeis", "Cerimonias", "Artefatos" }, // 1º aula
+								{ "Conceitos sobre Kanban", "Trello", "Colunas importantes" }, // 2º aula
+						}//
+				));
 
 		cursos.put("Git", // chave
 				// value
-				new Curso("Git", new String[] {}, 200, LocalDate.of(2022, 04, 05), LocalDate.of(2022, 04, 10),
-						horaInicioNoite, horaFimNoite, new HashSet<String>(
-								Arrays.asList("Configuração", "Repositórios", "Commit e Push", "Branches"))));
+				new Curso("Git", new String[] {}, // pre-requisitos
+						200, // valor
+						LocalDate.of(2022, 04, 05), LocalDate.of(2022, 04, 10), // datas
+						horaInicioNoite, horaFimNoite, // horarios
+						new HashSet<String>(Arrays.asList("Configuração", "Repositórios", "Commit e Push", "Branches")), // ementa
+						new String[][] { // plano de aulas
+								{ "Conceitos sobre Git", "Configuração", "Repositórios", "Clone","Commit","Push","Branches" }, // 1º aula
+						}//
+				));
 
 		cursos.put("Lógica de programação", // chave
 				// value
-				new Curso("Lógica de programação", new String[] {}, 1000, LocalDate.of(2022, 04, 11),
-						LocalDate.of(2022, 04, 21), horaInicioNoite, horaFimNoite, new HashSet<String>(
-								Arrays.asList("Variaveis", "Constantes", "Decisões", "Repetições", "Função"))));
+				new Curso("Lógica de programação", new String[] { "Git" }, // pre-requisitos
+						1000, // valor
+						LocalDate.of(2022, 04, 11), LocalDate.of(2022, 04, 21), // datas
+						horaInicioNoite, horaFimNoite, // horarios
+						new HashSet<String>(
+								Arrays.asList("Variaveis", "Constantes", "Decisões", "Repetições", "Função")), // ementa
+						new String[][] { // plano de aulas
+								{ "Configugar ambiente", "Primeiro programa", "Variaveis", "Syso" }, // 1º aula
+								{ "Constantes", "Interação com usuário", "Comentários" }, // 2º aula
+						}//
+				));
 
 		cursos.put("Java avançado", // chave
 				// value
-				new Curso("Java avançado", new String[] {"Lógica de programação"}, 600, LocalDate.of(2022, 04, 22), LocalDate.of(2022, 04, 30),
-						horaInicioNoite, horaFimNoite, new HashSet<String>(Arrays.asList("Wrappers", "Enum",
-								"Collection", "Anottations", "Tratamento de erros"))));
+				new Curso("Java avançado", new String[] { "Lógica de programação" }, // pre-requisitos
+						600, // valor
+						LocalDate.of(2022, 04, 22), LocalDate.of(2022, 04, 30), // datas
+						horaInicioNoite, horaFimNoite, // horarios
+						new HashSet<String>(
+								Arrays.asList("Wrappers", "Enum", "Collection", "Anottations", "Tratamento de erros")), // ementa
+						new String[][] { // plano de aulas
+								{ "Classes Wrapper", "Enum", "Exercicios" }, // 1º aula
+								{ "Collections", "List", "ArrayList","LinkedList" }, // 2º aula
+								{ "Anottations", "Datas java8" }, // 3º aula
+						}//
+				));
 
 	}
 

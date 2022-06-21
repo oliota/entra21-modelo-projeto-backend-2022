@@ -17,12 +17,15 @@ public class Principal {
 	static Scanner entrada = new Scanner(System.in);
 
 	public static Funcionario funcionarioLogado = null;
+	
+	//TODO 03-avançado anotações
 	@FaltaImplementar
 	public static void entrar(byte tentativa) {
 		if (tentativa == 0) {
 			System.out.println("Não foi possivel realizar o login, todas as tentativas falharam");
 			return;
 		} else {
+			//TODO 01-logica operador ternario
 			System.out.println((tentativa > 1 ? "Restam " : "Resta ") + tentativa
 					+ (tentativa > 1 ? " tentativas" : " tentativa") + " de login:");
 		}
@@ -34,14 +37,14 @@ public class Principal {
 			System.out.println("Informe a senha para liberar o acesso:");
 
 			if (!funcionario.getSenha().equals(entrada.next())) {
-				throw new SenhaIncorretaException();
+				throw new SenhaIncorretaException();//TODO 03-avançado custom Exception
 			} else {
 				verificarSenha(funcionario);
 				return;
 			}
 		} catch (NullPointerException e) {
 			System.out.println("Nenhum funcionario encontrado com esse CPF");
-			entrar(--tentativa);
+			entrar(--tentativa);//TODO 03-logica decremento
 			return;
 		} catch (SenhaIncorretaException e) {
 			System.out.println(e.getMessage());
