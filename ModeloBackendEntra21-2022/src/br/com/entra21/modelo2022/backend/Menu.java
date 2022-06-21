@@ -23,8 +23,8 @@ public class Menu {
 	public void executarMenu() {
 		do {
 			System.out.println("=========>   MENU " + this.titulo + "   <====  "+exibirDetalhesFuncionarioLogado()+" ==============");
-			System.out.println("-1 = Encerrar programa");
-			System.out.println(" 0 = Voltar");
+			System.out.println("-1 = "+IRepositorio.tradutor.getEncerrar());
+			System.out.println(" 0 = "+IRepositorio.tradutor.getVoltar());
 			
 			if (opcoes != null && !opcoes.isEmpty()) {
 				for (int contador = 0; contador < opcoes.size(); contador++) {

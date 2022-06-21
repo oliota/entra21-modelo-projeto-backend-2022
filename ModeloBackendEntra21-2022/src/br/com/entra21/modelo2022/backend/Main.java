@@ -66,7 +66,7 @@ public class Main {
 		}
 
 		String menu = "Bem vindo ao sistema Cursos - Entra21:";
-		menu += "\n\t0 - Sair";// TODO 01-logica incremento
+		menu += "\n\t0 - "+IRepositorio.tradutor.getEncerrar();// TODO 01-logica incremento
 		for (int opcao = 0; opcao < opcoes.size(); opcao++) {// TODO 01-logica for
 			menu += "\n\t" + (opcao + 1) + " - " + opcoes.get(opcao);// TODO 01-logica concatenação
 		}
